@@ -537,6 +537,22 @@ export default class CustomChart extends React.Component {
         timeElapsed: 7
       }
     ];
+
+    function compare(a, b) {
+      const A = a.timeElapsed;
+      const B = b.timeElapsed;
+
+      let comparison = 0;
+      if (A > B) {
+        comparison = 1;
+      } else if (A < B) {
+        comparison = -1;
+      }
+      return comparison;
+    }
+
+    let sortedArray = data.sort(compare);
+
     return (
       <div>
         <h1>Example LineChart</h1>
@@ -544,7 +560,7 @@ export default class CustomChart extends React.Component {
           <LineChart
             width={900}
             height={300}
-            data={data}
+            data={sortedArray}
             margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
           >
             <XAxis
